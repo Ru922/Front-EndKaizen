@@ -1,0 +1,36 @@
+.input-container{
+    width: 100%;
+}
+
+.regular-style {
+    border: 1px solid black;
+    color: black;
+    width: 100%;
+    height: 35px;
+    border-radius: 25px;
+    padding: 0 10px 0 20px;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+    font-size: 14px;
+    outline: none;
+    width: 100%;
+}
+.input-error{
+    border: 1px solid red;
+    color: red;
+    background-color: rgb(224, 204, 204);
+    width: 100%;
+    height: 35px;
+    border-radius: 25px;
+    padding: 0 10px 0 20px;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+    font-size: 14px;
+    outline: none;
+    width: 100%;
+}
+
+.input-error::placeholder{
+    color:red;
+    font-size: 14px;
+}
