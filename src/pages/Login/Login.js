@@ -105,8 +105,9 @@ const Login = () => {
                 Ingresar
             </button>
             <div>
-            <Link to='/createUser'style={{ color: '#734488' }}>
-            <Label text='I want to sign up' />
+                <Label text='Quieres ser parte de la comunidad Kaizen?'/>
+            <Link to='/createUser'>
+            <Label text='Registrate aqui' />
             </Link>
             </div>
         </div>

@@ -101,8 +101,6 @@ const CreateUser = () => {
         }
     }
 
-    let open = true;
-
     let screenWidth = window.innerWidth;
 
     return (
@@ -113,15 +111,15 @@ const CreateUser = () => {
             <div className='CreateUserContainer'>
                 <div className='BackgroundWeb' />
 
-                { screenWidth < 1030 && <Title text='(new user)' /> }
+                { screenWidth < 1030 && <Title text='Registro' /> }
 
                 <div className='createUserContent'>
                     
                     <div className='formCreateUser'>
 
-                    { screenWidth > 1030 && <Title text='(new user)' /> }
+                    { screenWidth > 1030 && <Title text='Registro' /> }
 
-                        <Label text='User' />
+                        <Label text='Usuario' />
                         <Input 
                             attribute={{
                                 name: 'username',
@@ -134,7 +132,7 @@ const CreateUser = () => {
                         { errors.usernameError && 
                             <ErrorNotification text='Required.' /> }
 
-                        <Label text='First name' />
+                        <Label text='Nombre' />
                         <Input 
                             attribute={{
                                 name: 'firstName',
@@ -147,7 +145,7 @@ const CreateUser = () => {
                         { errors.firstNameError && 
                             <ErrorNotification text='Required.' /> }
 
-                        <Label text='Last name' />
+                        <Label text='Apellido' />
                         <Input 
                             attribute={{
                                 name: 'lastName',
@@ -160,7 +158,7 @@ const CreateUser = () => {
                         { errors.lastNameError && 
                             <ErrorNotification text='Required.' /> }
 
-                        <Label text='Password' />
+                        <Label text='Contraseña' />
                         <Input 
                             attribute={{
                                 name: 'password',
@@ -173,7 +171,7 @@ const CreateUser = () => {
                         { errors.passwordError && 
                             <ErrorNotification text='min. 6 characters' /> }
 
-                        <Label text='Repeat password' />
+                        <Label text='Repita la contraseña' />
                         <Input 
                             attribute={{
                                 name: 'passwordAgain',
@@ -187,7 +185,7 @@ const CreateUser = () => {
                             <ErrorNotification text="Password don't match" /> }
 
                         <Button 
-                            text='Sign Up'
+                            text='Registrate'
                             handleOnClick={handleSubmit}
                             param={params}
                         />
@@ -199,10 +197,9 @@ const CreateUser = () => {
                         }}>
                             <Link 
                             to='/'
-                            style={{ color: '#734488' }}
                             >
                                 <Label 
-                                text='I want to sign in' />
+                                text='Quiero ingresar' />
                             </Link>
                         </div>
                     </div>
