@@ -56,13 +56,17 @@ const Login = () => {
     }
 
     return (
+
         <div className="login-container">
-            <Title text='Bienvenido!'/>
-            { hasError && 
-            <ModalError
-            title='Ocurrio un error!'
-            text="Usuario o contraseña no existen"
-            /* handleOnClick={clearErrorModal} */ //fijarse de cambiar los estilos
+
+            { isLogin && <Redirect to= '/home' />}
+
+                <Title text='Bienvenido!'/>
+                { hasError && 
+                <ModalError
+                title='Ocurrio un error!'
+                text="Usuario o contraseña no existen"
+            
             />
             }
             <Label text='Usuario'/>

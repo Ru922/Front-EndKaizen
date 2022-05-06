@@ -106,16 +106,16 @@ const CreateUser = () => {
     return (
         <>
 
-        { created && <Redirect to='/home' /> }
+        { created && <Redirect to='/' /> }
 
             <div className='CreateUserContainer'>
                 <div className='BackgroundWeb' />
 
                 { screenWidth < 1030 && <Title text='Registro' /> }
 
-                <div className='createUserContent'>
+                <div>
                     
-                    <div className='formCreateUser'>
+                    <div>
 
                     { screenWidth > 1030 && <Title text='Registro' /> }
 
@@ -190,13 +190,9 @@ const CreateUser = () => {
                             param={params}
                         />
 
-                        <div 
-                        >
-                            <Link 
-                            to='/'
-                            >
-                                <Label 
-                                text='Quiero ingresar' />
+                        <div>
+                            <Link to='/'>
+                                <Label text='Quiero ingresar' />
                             </Link>
                         </div>
                     </div>
