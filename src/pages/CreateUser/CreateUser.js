@@ -123,7 +123,7 @@ const CreateUser = () => {
                         <Input 
                             attribute={{
                                 name: 'username',
-                                inputType: 'text',
+                                type: 'text',
                                 ph: ''
                             }}
                             handleChange={handleChange}
@@ -136,7 +136,7 @@ const CreateUser = () => {
                         <Input 
                             attribute={{
                                 name: 'firstName',
-                                inputType: 'text',
+                                type: 'text',
                                 ph: ''
                             }}
                             handleChange={handleChange}
@@ -149,7 +149,7 @@ const CreateUser = () => {
                         <Input 
                             attribute={{
                                 name: 'lastName',
-                                inputType: 'text',
+                                type: 'text',
                                 ph: ''
                             }}
                             handleChange={handleChange}
@@ -162,7 +162,7 @@ const CreateUser = () => {
                         <Input 
                             attribute={{
                                 name: 'password',
-                                inputType: 'password',
+                                type: 'password',
                                 ph: ''
                             }}
                             handleChange={handleChange}
@@ -175,7 +175,7 @@ const CreateUser = () => {
                         <Input 
                             attribute={{
                                 name: 'passwordAgain',
-                                inputType: 'password',
+                                type: 'password',
                                 ph: ''
                             }}
                             handleChange={handleChange}
@@ -191,10 +191,7 @@ const CreateUser = () => {
                         />
 
                         <div 
-                        style={{ display: 'flex', 
-                        justifyContent: 'center',
-                        alignItems: 'center' 
-                        }}>
+                        >
                             <Link 
                             to='/'
                             >

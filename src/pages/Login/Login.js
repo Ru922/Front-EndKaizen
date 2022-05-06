@@ -4,7 +4,7 @@ import './Login.css'
 import Title from "./components/Title/Title";
 import Label from "./components/Label/Label";
 import Input from "./components/Input/Input";
-import Button from '../../commons/RegularButton';
+/* import Button from '../../commons/RegularButton'; */
 import ModalError from '../../commons/ModalError'
 
 const Login = () => {
@@ -15,33 +15,24 @@ const Login = () => {
     const [ isLogin, setIsLogin ] = useState(false); //usar despues para el login
     const [ hasError, setHasError ] = useState(false);
 
-    const open = true;
 
-    const [ errors, setErrors ] = useState({
-        usernameError: false,
-        passwordError: false
-    })
 
     function handleChange(name, value) {
-        switch(name) {
-            case 'username':
-                setErrors({ usernameError: false, passwordError: false });
-                setHasError(false);
-                setUser(value);
-                break;
-            case 'password':
-                setErrors({ usernameError: false, passwordError: false });
-                setHasError(false);
-                setPassword(value);
-                break;
-            default: 
-            console.log('no hay valores')
+        if(name === 'usuario'){
+            setUser(value)
+        } else{
+            if(value.length < 6 ){
+                setPasswordError(true)
+            } else {
+                setPassword(value)
+                setPasswordError(false)
+            }
         }
     }
 
     function ifMatch(param) {
         if(param.user.length > 0 && param.password.length > 0){
-            if(param.user === 'Ruben' && param.password === '123456'){
+            if(param.user === 'Ruben' && param.password === '123456'){ // aca cambiar a lo de la base de datos
                 const { user, password } = param;
                 let ac = {user, password}
                 let account = JSON.stringify(ac);
@@ -69,8 +60,8 @@ const Login = () => {
             <Title text='Bienvenido!'/>
             { hasError && 
             <ModalError
-            title='An error occurred!'
-            text="User or password doesn't exist."
+            title='Ocurrio un error!'
+            text="Usuario o contraseña no existen"
             /* handleOnClick={clearErrorModal} */ //fijarse de cambiar los estilos
             />
             }
