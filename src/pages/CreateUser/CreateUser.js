@@ -3,15 +3,11 @@ import './CreateUser.css'
 import Label from "../Login/components/Label/Label";
 import Input from "../Login/components/Input/Input";
 import Title from "../Login/components/Title/Title";
-import { Redirect, Link } from 'react-router-dom';
+import { Navigate, Link } from 'react-router-dom';
 import ErrorNotification from '../../commons/ErrorNotification';
 import Button from '../../commons/RegularButton';
 
-
-
 const CreateUser = () => {
-
-
     const [ username, setUsername ] = useState('');
     const [ firstName, setFirstName ] = useState('');
     const [ lastName, setLastName ] = useState('');
@@ -66,8 +62,10 @@ const CreateUser = () => {
                 if(password.length < 6) {
                     setErrors({ ...errors, passwordError: true })
                 } else if( password === value ) {
-                    setErrors({ ...errors, passwordError: false,
-                                 passwordAgainError: false })
+                    setErrors({
+                        ...errors,
+                        passwordError: false,
+                        passwordAgainError: false })
                     setPasswordAgain(value)
                 } else {
                     setErrors({ ...errors, passwordError: false, 
@@ -106,7 +104,7 @@ const CreateUser = () => {
     return (
         <>
 
-        { created && <Redirect to='/' /> }
+        { created && <Navigate to='/' /> }
 
             <div className='CreateUserContainer'>
                 <div className='BackgroundWeb' />

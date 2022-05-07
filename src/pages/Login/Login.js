@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Redirect, Link } from 'react-router-dom';
+import { Navigate, Link } from 'react-router-dom';
 import './Login.css'
 import Title from "./components/Title/Title";
 import Label from "./components/Label/Label";
@@ -59,7 +59,7 @@ const Login = () => {
 
         <div className="login-container">
 
-            { isLogin && <Redirect to= '/home' />}
+            { isLogin && <Navigate to= '/home' />}
 
                 <Title text='Bienvenido!'/>
                 { hasError && 
