@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import React from 'react';
 import './Home.css';
 
@@ -7,16 +8,18 @@ const Home = () => {
       <img style={{ width: 200 }} className="logo" src="http://assets.stickpng.com/images/580b57fcd9996e24bc43c53e.png" alt="" />
       <div className="container-nav">
         <div className="container-btn-nav">
-          <a href="/public/js/login/login.html">
+         <Link to='/login'>
             <button style={{backgroundColor: "aquamarine"}} className="btn-nav">
-              Ingresá
+              Log In
             </button>
-          </a>
-          <a href="/public/js/sigin/sigin.html">
+         </Link>
+          
+          <Link to= '/createUser'>
             <button style={{backgroundColor: "#4dff00"}} className="btn-nav">
               Registrate
             </button>
-          </a>
+          </Link>
+          
         </div>
 
         <div className="iconos_nav">

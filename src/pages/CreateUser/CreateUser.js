@@ -11,6 +11,7 @@ const CreateUser = () => {
     const [ username, setUsername ] = useState('');
     const [ firstName, setFirstName ] = useState('');
     const [ lastName, setLastName ] = useState('');
+    const [ email, setEmail ] = useState('');
     const [ password, setPassword ] = useState('');
     const [ passwordAgain, setPasswordAgain ] = useState('');
 
@@ -20,6 +21,7 @@ const CreateUser = () => {
         usernameError: false,
         firstNameError: false,
         lastNameError: false,
+        emailError: false,
         passwordError: false,
         passwordAgainError: false
     })
@@ -48,6 +50,14 @@ const CreateUser = () => {
                 } else {
                     setErrors({ ...errors, lastNameError: false })
                     setLastName(value)
+                }
+                break;
+            case 'email':
+                if(value < 1) {
+                    setErrors({ ...errors, emailError: true })
+                } else {
+                    setErrors({ ...errors, emailError: false })
+                    setEmail(value)
                 }
                 break;
             case 'password':
@@ -81,6 +91,7 @@ const CreateUser = () => {
         errors.usernameError === false &&
         errors.firstNameError === false &&
         errors.lastNameError === false &&
+        errors.email === false &&
         errors.passwordError === false &&
         errors.passwordAgainError === false &&
         username.length > 1 &&
@@ -91,7 +102,7 @@ const CreateUser = () => {
     ;
 
     function handleSubmit() {
-        let account = { username, firstName, lastName, password }
+        let account = { username, firstName, lastName, password, email }
         if(account) {
             let ac = JSON.stringify(account)
             localStorage.setItem('account', ac)
@@ -128,7 +139,7 @@ const CreateUser = () => {
                             param={errors.usernameError}
                         />
                         { errors.usernameError && 
-                            <ErrorNotification text='Required.' /> }
+                            <ErrorNotification text='Requerido.' /> }
 
                         <Label text='Nombre' />
                         <Input 
@@ -141,7 +152,7 @@ const CreateUser = () => {
                             param={errors.firstNameError}
                         />
                         { errors.firstNameError && 
-                            <ErrorNotification text='Required.' /> }
+                            <ErrorNotification text='Requerido.' /> }
 
                         <Label text='Apellido' />
                         <Input 
@@ -154,7 +165,20 @@ const CreateUser = () => {
                             param={errors.lastNameError}
                         />
                         { errors.lastNameError && 
-                            <ErrorNotification text='Required.' /> }
+                            <ErrorNotification text='Requerido.' /> }
+
+                        <Label text='Email' />
+                        <Input 
+                            attribute={{
+                                name: 'email',
+                                type: 'email',
+                                ph: ''
+                            }}
+                            handleChange={handleChange}
+                            param={errors.email}
+                        />
+                        { errors.email && 
+                            <ErrorNotification text='Requerido.' /> }
 
                         <Label text='Contraseña' />
                         <Input 
@@ -166,8 +190,9 @@ const CreateUser = () => {
                             handleChange={handleChange}
                             param={errors.passwordError}
                         />
+                        
                         { errors.passwordError && 
-                            <ErrorNotification text='min. 6 characters' /> }
+                            <ErrorNotification text='Requerido.' /> }
 
                         <Label text='Repita la contraseña' />
                         <Input 
@@ -189,7 +214,7 @@ const CreateUser = () => {
                         />
 
                         <div>
-                            <Link to='/'>
+                            <Link to='/login'>
                                 <Label text='Quiero ingresar' />
                             </Link>
                         </div>
