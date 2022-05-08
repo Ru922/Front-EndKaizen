@@ -8,14 +8,11 @@ import Input from "./components/Input/Input";
 import ModalError from '../../commons/ModalError'
 
 const Login = () => {
-
     const [ user, setUser ] = useState('');
     const [ password, setPassword ] = useState('');
     const [ passwordError, setPasswordError ] = useState(false);
     const [ isLogin, setIsLogin ] = useState(false); //usar despues para el login
     const [ hasError, setHasError ] = useState(false);
-
-
 
     function handleChange(name, value) {
         if(name === 'usuario'){
@@ -30,43 +27,51 @@ const Login = () => {
         }
     }
 
-    function ifMatch(param) {
-        if(param.user.length > 0 && param.password.length > 0){
-            if(param.user === 'Ruben' && param.password === '123456'){ // aca cambiar a lo de la base de datos
-                const { user, password } = param;
-                let ac = {user, password}
-                let account = JSON.stringify(ac);
-                localStorage.setItem('account', account);
-                setIsLogin(true)
-            } else{
-                setIsLogin(false);
-                setHasError(true);
-            }
-        } else {
-            setIsLogin(false)
-            setHasError(true);
+    async function handleSubmit() {
+        const url = 'http://localhost:3000/login';
+        const data = {
+            email: user,
+            password: password
         };
-    };
+        const config = {
+            method: 'POST', // *GET, POST, PUT, DELETE, etc.
+            mode: 'cors', // no-cors, *cors, same-origin
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data) // body data type must match "Content-Type" header
+        };
 
-    function handleSubmit(){
-        let account = { user, password }
-        if(account){
-            ifMatch(account)
+        if(data){
+            fetch(url, config)
+                .then(response => {
+                    if (response.ok) {
+                        setIsLogin(true);
+                        // setear el usuario que viene en response.json()
+                        return response.json();
+                    } else {
+                        setHasError(true);
+                        throw new Error('Something went wrong');
+                    }
+                })
+                .then((responseJson) => {
+                    console.log("responseJson::::::::::", responseJson);
+                })
+                .catch((error) => {
+                    setIsLogin(false)
+                    setHasError(true);
+                    console.log(error)
+                });
         }
+
     }
 
     return (
-
         <div className="login-container">
-
             { isLogin && <Navigate to= '/home' />}
-
                 <Title text='Bienvenido!'/>
                 { hasError && 
                 <ModalError
                 title='Ocurrio un error!'
                 text="Usuario o contraseña no existen"
-            
             />
             }
             <Label text='Usuario'/>
@@ -96,6 +101,7 @@ const Login = () => {
                 Contraseña invalida
             </label>
             }
+
             <button onClick={handleSubmit}>
                 Ingresar
             </button>
