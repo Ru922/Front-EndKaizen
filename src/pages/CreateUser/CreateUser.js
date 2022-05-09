@@ -9,17 +9,15 @@ import Button from '../../commons/RegularButton';
 
 const CreateUser = () => {
     const [ username, setUsername ] = useState('');
-    const [ firstName, setFirstName ] = useState('');
-    const [ lastName, setLastName ] = useState('');
+    const [ name, setName ] = useState('');
+    const [ lastname, setLastName ] = useState('');
     const [ email, setEmail ] = useState('');
     const [ password, setPassword ] = useState('');
     const [ passwordAgain, setPasswordAgain ] = useState('');
-
     const [ created, setCreated ] = useState(false)
-
     const [ errors, setErrors ] = useState({
         usernameError: false,
-        firstNameError: false,
+        nameError: false,
         lastNameError: false,
         emailError: false,
         passwordError: false,
@@ -36,15 +34,15 @@ const CreateUser = () => {
                     setUsername(value)
                 }
                 break;
-            case 'firstName':
+            case 'name':
                 if(value < 1) {
-                    setErrors({ ...errors, firstNameError: true })
+                    setErrors({ ...errors, nameError: true })
                 } else {
-                    setErrors({ ...errors, firstNameError: false })
-                    setFirstName(value)
+                    setErrors({ ...errors, nameError: false })
+                    setName(value)
                 }
                 break;
-            case 'lastName':
+            case 'lastname':
                 if(value < 1) {
                     setErrors({ ...errors, lastNameError: true })
                 } else {
@@ -89,24 +87,63 @@ const CreateUser = () => {
 
     let params =
         errors.usernameError === false &&
-        errors.firstNameError === false &&
+        errors.nameError === false &&
         errors.lastNameError === false &&
         errors.emailError === false &&
         errors.passwordError === false &&
         errors.passwordAgainError === false &&
         username.length > 1 &&
-        firstName.length > 1 &&
-        lastName.length > 1 &&
+        name.length > 1 &&
+        lastname.length > 1 &&
         password.length > 5 &&
         password === passwordAgain
     ;
 
     function handleSubmit() {
-        let account = { username, firstName, lastName, password, email }
+        const url = 'http://localhost:3000/login';
+        const account = { 
+            username: username,
+            name: name,
+            lastname: lastname,
+            password: password,
+            email: email
+        };
+//        const data = {
+//            username: user,
+//            password: password
+//        };
+
+
+        const config = {
+            method: 'POST', // *GET, POST, PUT, DELETE, etc.
+            mode: 'cors', // no-cors, *cors, same-origin
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(account) // body data type must match "Content-Type" header
+        };
+        console.log(config);
         if(account) {
-            let ac = JSON.stringify(account)
-            localStorage.setItem('account', ac)
-            setTimeout(() => setCreated(true), 2000)
+            fetch(url, config)
+                .then(response => {
+                    if (response.ok) {
+                        setCreated(true);
+                        console.log('response.ok')
+                        return response.json();
+                    } else {
+                        setErrors(true);
+                        throw new Error('Something went wrong');
+                    }
+                })
+                .then((responseJson) => {
+                    console.log("responseJson::::::::::", responseJson);
+                })
+                .catch((error) => {
+                    setCreated(false)
+                    setErrors(true);
+                    console.log(error)
+                });
+//            let ac = JSON.stringify(account)
+  //          localStorage.setItem('account', ac)
+    //        setTimeout(() => setCreated(true), 2000)
         }
     }
 
@@ -144,20 +181,20 @@ const CreateUser = () => {
                         <Label text='Nombre' />
                         <Input 
                             attribute={{
-                                name: 'firstName',
+                                name: 'name',
                                 type: 'text',
                                 ph: ''
                             }}
                             handleChange={handleChange}
-                            param={errors.firstNameError}
+                            param={errors.nameError}
                         />
-                        { errors.firstNameError && 
+                        { errors.nameError && 
                             <ErrorNotification text='Requerido.' /> }
 
                         <Label text='Apellido' />
                         <Input 
                             attribute={{
-                                name: 'lastName',
+                                name: 'lastname',
                                 type: 'text',
                                 ph: ''
                             }}
