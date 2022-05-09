@@ -69,7 +69,7 @@ const CreateUser = () => {
                 }
                 break;
             case 'passwordAgain':
-                if(password.length < 6) {
+                if(password.length < 5) {
                     setErrors({ ...errors, passwordError: true })
                 } else if( password === value ) {
                     setErrors({
@@ -91,7 +91,7 @@ const CreateUser = () => {
         errors.usernameError === false &&
         errors.firstNameError === false &&
         errors.lastNameError === false &&
-        errors.email === false &&
+        errors.emailError === false &&
         errors.passwordError === false &&
         errors.passwordAgainError === false &&
         username.length > 1 &&
@@ -175,9 +175,9 @@ const CreateUser = () => {
                                 ph: ''
                             }}
                             handleChange={handleChange}
-                            param={errors.email}
+                            param={errors.emailError}
                         />
-                        { errors.email && 
+                        { errors.emailError && 
                             <ErrorNotification text='Requerido.' /> }
 
                         <Label text='Contraseña' />
