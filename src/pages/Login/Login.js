@@ -74,7 +74,7 @@ const Login = () => {
             <img className="logo" src={logo} alt="" /> 
             </Link>     
             </nav>
-            { isLogin && <Navigate to= '/home' />}
+            { isLogin && <Navigate to= '/loginSuccess' />}
             
                 <Title text='Bienvenido!'/>
                 { hasError && 
@@ -110,7 +110,7 @@ const Login = () => {
                 Contraseña invalida
             </label>
             }
-
+    
             <button onClick={handleSubmit}>
                 Ingresar
             </button>
