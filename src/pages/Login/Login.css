@@ -6,7 +6,7 @@
 }
 
 .label-error{
-    font-size: 12px;
+    font-size: 25px;
     color: red;
     background: rgb(224, 204, 204);
     width: fit-content  ;
@@ -39,7 +39,7 @@
     border-radius: 35px;
     font-family: 'Quicksand';
     font-size: 16px;
-    color: black;
+    color: white;
     font-weight: 400;
 }
 
