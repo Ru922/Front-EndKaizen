@@ -30,7 +30,7 @@ const Login = () => {
     async function handleSubmit() {
         const url = 'http://localhost:3000/login';
         const data = {
-            email: user,
+            username: user,
             password: password
         };
         const config = {
@@ -46,6 +46,7 @@ const Login = () => {
                     if (response.ok) {
                         setIsLogin(true);
                         // setear el usuario que viene en response.json()
+                        console.log('response.ok')
                         return response.json();
                     } else {
                         setHasError(true);
