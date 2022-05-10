@@ -6,6 +6,7 @@ import Label from "./components/Label/Label";
 import Input from "./components/Input/Input";
 /* import Button from '../../commons/RegularButton'; */
 import ModalError from '../../commons/ModalError'
+import logo from "../Home/img/logo.png"
 
 const Login = () => {
     const [ user, setUser ] = useState('');
@@ -66,8 +67,15 @@ const Login = () => {
     }
 
     return (
+        
         <div className="login-container">
+            <nav>
+            <Link to= '/'>
+            <img className="logo" src={logo} alt="" /> 
+            </Link>     
+            </nav>
             { isLogin && <Navigate to= '/home' />}
+            
                 <Title text='Bienvenido!'/>
                 { hasError && 
                 <ModalError

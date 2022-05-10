@@ -6,6 +6,7 @@ import Title from "../Login/components/Title/Title";
 import { Navigate, Link } from 'react-router-dom';
 import ErrorNotification from '../../commons/ErrorNotification';
 import Button from '../../commons/RegularButton';
+import logo from '../Home/img/logo.png'
 
 const CreateUser = () => {
     const [ username, setUsername ] = useState('');
@@ -156,6 +157,11 @@ const CreateUser = () => {
 
             <div className='CreateUserContainer'>
                 <div className='BackgroundWeb' />
+        <nav>
+            <Link to= '/'>
+            <img className="logo" src={logo} alt="" /> 
+            </Link>     
+            </nav>
 
                 { screenWidth < 1030 && <Title text='Registro' /> }
 
