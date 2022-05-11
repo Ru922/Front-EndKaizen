@@ -1,11 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 import './LoginSuccess.css'
 import { Link } from "react-router-dom";
 import  logo  from './img/logo.png'
 import Label from '../Login/components/Label/Label' 
-const LoginSuccess = () => {
-    return(
-        
+const LoginSuccess = ({ loggedUser, setLoggedUser }) => {
+  return(
         <>
       <nav>
       <img className="logo" src={logo} alt="" />  
@@ -13,18 +12,22 @@ const LoginSuccess = () => {
            
         <div className="container-btn-nav">
             <Link to='/logout'>
-           <button style={{backgroundColor: "aquamarine"}} className="btn-nav">
+            <button
+              style={{backgroundColor: "aquamarine"}}
+              className="btn-nav"
+              onClick={() => setLoggedUser({})}
+            >
               Log out
-              </button>
+            </button>
             </Link>
         </div>
       </div>
       </nav>  
       <div className="title">
-      <Label text = 'Bienvenido!'/>
+      <Label text={`Bienvenido! ${loggedUser.name}`}/>
     </div>
 
-    <h1 className="cursos-h1">Inscribete a tu clase!</h1>
+    <h1 className="cursos-h1">Inscribete a tu clase</h1>
     <div className="cursos-disponibles">
          <div className="contenedor-fig1">
             <img src="https://t4t6b3a6.stackpathcdn.com/wp-content/uploads/2019/02/Desarrollo-Software-Medida.png" alt="" />

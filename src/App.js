@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import Login from './pages/Login/Login';
 import LoginSuccess from './pages/LoginSuccess/LoginSuccess';
 import CreateUser from './pages/CreateUser/CreateUser';
@@ -13,13 +13,16 @@ import InscripcionDiplosoft from './pages/Inscripciones/Diplosoft/Diplosoft'
 import Logout from "./pages/Logout/Logout";
 
 function App() {
+  const [ loggedUser, setLoggedUser ] = useState({})
+  console.log("loggedUser::::::::::::::::", loggedUser)
+
   return(
     <div className="App">
       <BrowserRouter>
         <Routes>
-          <Route path="login" element={<Login />} />
+          <Route path="login" element={<Login setLoggedUser={setLoggedUser} />} />
           <Route path="createUser" element={<CreateUser />} />
-          <Route path="loginSuccess" element={<LoginSuccess />} />
+          <Route path="loginSuccess" element={<LoginSuccess loggedUser={loggedUser} setLoggedUser={setLoggedUser} />} />
           <Route path="diplosoft" element={<Diplomatura />} />
           <Route path="backsoft" element={<Backsoft />} />
           <Route path="dbsoft" element={<Dbsoft />} />
@@ -27,7 +30,6 @@ function App() {
           <Route path="loginSuccess/diplosoft" element={<InscripcionDiplosoft/>}/>
           <Route path="logout" element={<Logout/>} />
           <Route path="/" element={<Home />} />
-          
         </Routes>
       </BrowserRouter>
     </div>

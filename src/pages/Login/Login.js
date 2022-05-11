@@ -8,7 +8,7 @@ import Input from "./components/Input/Input";
 import ModalError from '../../commons/ModalError'
 import logo from "../Home/img/logo.png"
 
-const Login = () => {
+const Login = ({ setLoggedUser }) => {
     const [ user, setUser ] = useState('');
     const [ password, setPassword ] = useState('');
     const [ passwordError, setPasswordError ] = useState(false);
@@ -56,6 +56,7 @@ const Login = () => {
                 })
                 .then((responseJson) => {
                     console.log("responseJson::::::::::", responseJson);
+                    setLoggedUser(responseJson);
                 })
                 .catch((error) => {
                     setIsLogin(false)
